@@ -16,10 +16,9 @@ api_key = os.getenv("IPIFY_API_KEY")
 api_url = os.getenv("IPIFY_URL")
 
 @app.get('/geolocation')
-async def get_ip_location(ip: str = Query(..., example='8.8.8.8')):
+async def get_ip_location(ip: str = Query(..., description="IP address to lookup")):
     params = {
-        "api_key": api_key,
-        "ip_address": ip
+        "ipAddress": ip
     }
 
     try:
