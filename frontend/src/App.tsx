@@ -1,10 +1,11 @@
-function App() {
+import SearchBar from "./components/SearchBar"
 
+const App: React.FC = () => {
   return (
-    <>
-      <h1>Hello World!</h1>
-    </>
-  )
+    <section>
+      <SearchBar />
+    </section>
+  );
 }
 
 export default App
