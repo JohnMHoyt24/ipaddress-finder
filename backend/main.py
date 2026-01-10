@@ -4,6 +4,7 @@ as environmental variables.
 """
 
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 import os
 from dotenv import load_dotenv
 import httpx
@@ -14,6 +15,18 @@ app = FastAPI()
 
 api_key = os.getenv("IPIFY_API_KEY")
 api_url = os.getenv("IPIFY_URL")
+
+origins = [
+    "http://localhost:5173/"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get('/geolocation')
 async def get_ip_location(ip: str = Query(..., description="IP address to lookup")):
